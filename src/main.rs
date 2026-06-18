@@ -74,7 +74,7 @@ fn main() {
     let ruta_manual = bfs_manual(&grafo_manual, ss_idx);
     let duration_manual = start_manual.elapsed();
 
-    print!("    ➡️ Ruta (BFS Manual):   ");
+    print!("     Ruta (BFS Manual):   ");
     for (i, idx) in ruta_manual.iter().enumerate() {
         print!("{}", grafo_manual.nodos[*idx].peso_nodo.nombre);
         if i < ruta_manual.len() - 1 { print!(" -> "); }
@@ -85,7 +85,7 @@ fn main() {
     let ruta_petgraph = bfs_petgraph(&grafo_petgraph, ss_node);
     let duration_petgraph = start_petgraph.elapsed();
 
-    print!("    ➡️ Ruta (BFS Petgraph): ");
+    print!("     Ruta (BFS Petgraph): ");
     for (i, idx) in ruta_petgraph.iter().enumerate() {
         if let Some(ciudad) = grafo_petgraph.grafo.node_weight(*idx) {
             print!("{}", ciudad.nombre);
@@ -101,7 +101,7 @@ fn main() {
     let ruta_dfs_manual = dfs_manual(&grafo_manual, ss_idx);
     let duration_dfs_manual = start_dfs_manual.elapsed();
 
-    print!("    ➡️ Ruta (DFS Manual):   ");
+    print!("     Ruta (DFS Manual):   ");
     for (i, idx) in ruta_dfs_manual.iter().enumerate() {
         print!("{}", grafo_manual.nodos[*idx].peso_nodo.nombre);
         if i < ruta_dfs_manual.len() - 1 { print!(" -> "); }
@@ -112,7 +112,7 @@ fn main() {
     let ruta_dfs_petgraph = dfs_petgraph(&grafo_petgraph, ss_node);
     let duration_dfs_petgraph = start_dfs_petgraph.elapsed();
 
-    print!("    ➡️ Ruta (DFS Petgraph): ");
+    print!("     Ruta (DFS Petgraph): ");
     for (i, idx) in ruta_dfs_petgraph.iter().enumerate() {
         if let Some(ciudad) = grafo_petgraph.grafo.node_weight(*idx) {
             print!("{}", ciudad.nombre);
@@ -122,6 +122,6 @@ fn main() {
     println!("\n       (Tiempo de ejecución: {:?})", duration_dfs_petgraph);
 
     println!("\n============================================================");
-    println!("🏆 ¡ORQUESTACIÓN FINAL EXITOSA - PROYECTO COMPLETADO! 🏆");
+    println!(" ¡ORQUESTACIÓN FINAL EXITOSA - PROYECTO COMPLETADO! ");
     println!("============================================================");
 }
