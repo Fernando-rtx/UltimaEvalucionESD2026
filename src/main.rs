@@ -67,29 +67,25 @@ fn main() {
     grafo_petgraph.agregar_arista(la_node, us_node, Conexion::new(90.0, 120, 0.0));
     println!("     Grafo Petgraph construido encapsulando la librería industrial.");
 
-    // 4. Ejecutando Algoritmos de Búsqueda en Anchura (BFS) - Trabajo de Rodrigo
+   // 4. Ejecutando Algoritmos de Búsqueda en Anchura (BFS) - Trabajo de Rodrigo
     println!("\n[4] Ejecutando Algoritmos de Recorrido BFS - Rodrigo...");
-    // 5. Ejecutando Algoritmos de Búsqueda en Profundidad (DFS) - Trabajo de Rodrigo
-    println!("\n[5] Ejecutando Algoritmos de Recorrido DFS - Rodrigo...");
-    
-    // Benchmark Manual
+
     let start_manual = Instant::now();
     let ruta_manual = bfs_manual(&grafo_manual, ss_idx);
     let duration_manual = start_manual.elapsed();
-    
-    print!("     Ruta (Grafo Manual): ");
+
+    print!("    ➡️ Ruta (BFS Manual):   ");
     for (i, idx) in ruta_manual.iter().enumerate() {
         print!("{}", grafo_manual.nodos[*idx].peso_nodo.nombre);
         if i < ruta_manual.len() - 1 { print!(" -> "); }
     }
     println!("\n       (Tiempo de ejecución: {:?})", duration_manual);
 
-    // Benchmark Petgraph
     let start_petgraph = Instant::now();
     let ruta_petgraph = bfs_petgraph(&grafo_petgraph, ss_node);
     let duration_petgraph = start_petgraph.elapsed();
-    
-    print!("     Ruta (Petgraph):     ");
+
+    print!("    ➡️ Ruta (BFS Petgraph): ");
     for (i, idx) in ruta_petgraph.iter().enumerate() {
         if let Some(ciudad) = grafo_petgraph.grafo.node_weight(*idx) {
             print!("{}", ciudad.nombre);
@@ -98,7 +94,34 @@ fn main() {
     }
     println!("\n       (Tiempo de ejecución: {:?})", duration_petgraph);
 
+    // 5. Ejecutando Algoritmos de Búsqueda en Profundidad (DFS) - Trabajo de Rodrigo
+    println!("\n[5] Ejecutando Algoritmos de Recorrido DFS - Rodrigo...");
+
+    let start_dfs_manual = Instant::now();
+    let ruta_dfs_manual = dfs_manual(&grafo_manual, ss_idx);
+    let duration_dfs_manual = start_dfs_manual.elapsed();
+
+    print!("    ➡️ Ruta (DFS Manual):   ");
+    for (i, idx) in ruta_dfs_manual.iter().enumerate() {
+        print!("{}", grafo_manual.nodos[*idx].peso_nodo.nombre);
+        if i < ruta_dfs_manual.len() - 1 { print!(" -> "); }
+    }
+    println!("\n       (Tiempo de ejecución: {:?})", duration_dfs_manual);
+
+    let start_dfs_petgraph = Instant::now();
+    let ruta_dfs_petgraph = dfs_petgraph(&grafo_petgraph, ss_node);
+    let duration_dfs_petgraph = start_dfs_petgraph.elapsed();
+
+    print!("    ➡️ Ruta (DFS Petgraph): ");
+    for (i, idx) in ruta_dfs_petgraph.iter().enumerate() {
+        if let Some(ciudad) = grafo_petgraph.grafo.node_weight(*idx) {
+            print!("{}", ciudad.nombre);
+            if i < ruta_dfs_petgraph.len() - 1 { print!(" -> "); }
+        }
+    }
+    println!("\n       (Tiempo de ejecución: {:?})", duration_dfs_petgraph);
+
     println!("\n============================================================");
-    println!(" ¡ORQUESTACIÓN FINAL EXITOSA - PROYECTO COMPLETADO! ");
+    println!("🏆 ¡ORQUESTACIÓN FINAL EXITOSA - PROYECTO COMPLETADO! 🏆");
     println!("============================================================");
 }
