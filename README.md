@@ -10,7 +10,7 @@ La documentación y material de soporte de este proyecto se encuentra totalmente
 
 👉 **[Reporte Oficial de Investigación - Grafos en Rust (Google Docs)](https://docs.google.com/document/d/1y0whwA74DEcmVAUtZH9WT7GXkOXi2EI3AlAHn7EhiTs/edit?usp=sharing)**
 
-👉 **[Diapositivas Oficiales de Exposición - Grafos en Rust (Google Slides)](https://docs.google.com/presentation/d/1up1nIGgDM09itQDEPvpoJafNgaUPoa2xNQguiJIwc8U/edit?usp=sharing)**
+👉 **[Diapositivas Oficiales de Exposición - Grafos en Rust (Google Slides)](https://docs.google.com/presentation/d/1YpXdnVZaWRn7xUuJJp0kHEbZCjDTyWV4jhXX-rf44hg/edit?usp=sharing)**
 
 ---
 
