@@ -7,12 +7,13 @@ pub mod algorithms;
 use model::{Ciudad, Conexion};
 use graph_manual::GrafoManual;
 use graph_petgraph::GrafoPetgraph;
-use algorithms::{bfs_manual, bfs_petgraph};
+//use algorithms::{bfs_manual, bfs_petgraph};
+use algorithms::{bfs_manual, bfs_petgraph, dfs_manual, dfs_petgraph};
 use std::time::Instant;
 
 fn main() {
     println!("============================================================");
-    println!("🚀 SISTEMA DE ANÁLISIS DE REDES VIALES (RUST) 🚀");
+    println!("SISTEMA DE ANÁLISIS DE REDES VIALES (RUST) ");
     println!("============================================================");
 
     // 1. Instanciamos las ciudades (Nodos) - Trabajo de Luis
@@ -44,7 +45,7 @@ fn main() {
     grafo_manual.agregar_arista(sm_idx, us_idx, Conexion::new(52.0, 60, 0.0));
     grafo_manual.agregar_arista(la_idx, so_idx, Conexion::new(70.0, 90, 0.0));
     grafo_manual.agregar_arista(la_idx, us_idx, Conexion::new(90.0, 120, 0.0));
-    println!("    ✅ Grafo Manual construido con {} nodos y listas de adyacencia ligadas.", grafo_manual.nodos.len());
+    println!("     Grafo Manual construido con {} nodos y listas de adyacencia ligadas.", grafo_manual.nodos.len());
 
     // 3. Construcción del Grafo Petgraph (Librería Industrial) - Trabajo de Alberto
     println!("\n[3] Construyendo Grafo Petgraph (Librería Industrial) - Alberto...");
@@ -64,17 +65,19 @@ fn main() {
     grafo_petgraph.agregar_arista(sm_node, us_node, Conexion::new(52.0, 60, 0.0));
     grafo_petgraph.agregar_arista(la_node, so_node, Conexion::new(70.0, 90, 0.0));
     grafo_petgraph.agregar_arista(la_node, us_node, Conexion::new(90.0, 120, 0.0));
-    println!("    ✅ Grafo Petgraph construido encapsulando la librería industrial.");
+    println!("     Grafo Petgraph construido encapsulando la librería industrial.");
 
     // 4. Ejecutando Algoritmos de Búsqueda en Anchura (BFS) - Trabajo de Rodrigo
     println!("\n[4] Ejecutando Algoritmos de Recorrido BFS - Rodrigo...");
+    // 5. Ejecutando Algoritmos de Búsqueda en Profundidad (DFS) - Trabajo de Rodrigo
+    println!("\n[5] Ejecutando Algoritmos de Recorrido DFS - Rodrigo...");
     
     // Benchmark Manual
     let start_manual = Instant::now();
     let ruta_manual = bfs_manual(&grafo_manual, ss_idx);
     let duration_manual = start_manual.elapsed();
     
-    print!("    ➡️ Ruta (Grafo Manual): ");
+    print!("     Ruta (Grafo Manual): ");
     for (i, idx) in ruta_manual.iter().enumerate() {
         print!("{}", grafo_manual.nodos[*idx].peso_nodo.nombre);
         if i < ruta_manual.len() - 1 { print!(" -> "); }
@@ -86,7 +89,7 @@ fn main() {
     let ruta_petgraph = bfs_petgraph(&grafo_petgraph, ss_node);
     let duration_petgraph = start_petgraph.elapsed();
     
-    print!("    ➡️ Ruta (Petgraph):     ");
+    print!("     Ruta (Petgraph):     ");
     for (i, idx) in ruta_petgraph.iter().enumerate() {
         if let Some(ciudad) = grafo_petgraph.grafo.node_weight(*idx) {
             print!("{}", ciudad.nombre);
@@ -96,6 +99,6 @@ fn main() {
     println!("\n       (Tiempo de ejecución: {:?})", duration_petgraph);
 
     println!("\n============================================================");
-    println!("🏆 ¡ORQUESTACIÓN FINAL EXITOSA - PROYECTO COMPLETADO! 🏆");
+    println!(" ¡ORQUESTACIÓN FINAL EXITOSA - PROYECTO COMPLETADO! ");
     println!("============================================================");
 }
